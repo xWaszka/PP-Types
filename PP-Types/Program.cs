@@ -15,7 +15,18 @@ string[] names = {
 void PrintGroups(string[] t, int perLine)
 {
 
-    // Write required code.
+    for (int i = 0; i < t.Length; i++)
+    {
+        Console.Write(t[i]);
+        if ((i + 1) % perLine == 0 || i == t.Length - 1)
+        {
+            Console.WriteLine(i == t.Length - 1 ? "." : ", ");
+        }
+        else
+        {
+            Console.Write(", ");
+        }
+    }
 
 }
 
@@ -27,9 +38,26 @@ void PrintGroups(string[] t, int perLine)
 
 void PrintColumns(string[] t, int perLine, int width)
 {
+    int totalItems = t.Length;
+    int rowCount = (int)Math.Ceiling((double)totalItems / perLine);
 
-    // Write required code.
-
+    for (int row = 0; row < rowCount; row++)
+    {
+        for (int col = 0; col < perLine; col++)
+        {
+            int index = row * perLine + col;
+            if (index < totalItems)
+            {
+                string item = t[index].Length > width ? t[index].Substring(0, width) : t[index].PadRight(width);
+                Console.Write(item);
+                if (col < perLine - 1)
+                {
+                    Console.Write("| ");
+                }
+            }
+        }
+        Console.WriteLine();
+    }
 }
 
 
@@ -114,3 +142,4 @@ Timon     | Pumbaa    | Mufasa    | Ariel     | Flounder  | Sebastian | Ursula  
 Beast     | Gaston    | Cinderella| Prince Cha| Aurora    | Maleficent| Rapunzel  | Flynn Ride
 Elsa      | Anna      | Olaf      | Moana     | Maui      | Hercules  |
 */
+Console.ReadLine();
